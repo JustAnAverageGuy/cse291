@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>The UDP Protocol</title>
+        <link href="css/style.css" rel="stylesheet">
+        <script src="js/script.js"> </script>
+</head>
+
+<body>
+        <p>
+                User Datagram Protocol (UDP) is one of the core communication protocols of the
+                Internet protocol suite used to send messages (transported as datagrams in packets) to other hosts on an
+                Internet Protocol (IP) network. Within an IP network, UDP does not require prior communication to set up
+                communication channels or data paths.
+        </p>
+        <p>
+                UDP uses a simple connectionless communication model with a minimum of protocol mechanisms. UDP
+                provides checksums for data integrity, and port numbers for addressing different functions at
+                the source and destination of the datagram. It has no handshaking dialogues and thus exposes the
+                user's program to any unreliability of the underlying network; there is no guarantee of
+                delivery, ordering, or duplicate protection. If error-correction facilities are needed at the
+                network interface level, an application may instead use Transmission Control Protocol (TCP) or
+                Stream Control Transmission Protocol (SCTP) which are designed for this purpose.
+        </p>
+        <p>
+                UDP is suitable for purposes where error checking and correction are either not necessary or are
+                performed in the application; UDP avoids the overhead of such processing in the protocol stack.
+                Time-sensitive applications often use UDP because dropping packets is preferable to waiting for
+                packets delayed due to retransmission, which may not be an option in a real-time system.
+
+                The protocol was designed by David P. Reed in 1980 and formally defined in <a
+                        href="https://datatracker.ietf.org/doc/html/rfc768">RFC 768</a>.
+        </p>
+        <h3> Datagram format specification </h3>
+        <p>
+                A UDP datagram consists of a datagram header followed by a data section (the payload data for the
+                application).<br> The UDP datagram header consists of 4 fields, each of which is 2 bytes (16 bits)
+        </p>
+
+
+        <pre id="header-format" >
+                          0      7 8     15 16    23 24    31
+                         +--------+--------+--------+--------+
+                         |     Source      |   Destination   |
+                         |      Port       |      Port       |
+                         +--------+--------+--------+--------+
+                         |                 |                 |
+                         |     Length      |    Checksum     |
+                         +--------+--------+--------+--------+
+                         |
+                         |          data octets ...
+                         +---------------- ...
+
+                              User Datagram Header Format</pre>
+        <h4>Fields</h4>
+        <ul>
+                <li>Source Port is an optional field, when meaningful, it indicates the port
+                        of the sending process, and may be assumed to be the port to which a
+                        reply should be addressed in the absence of any other information. If
+                        not used, a value of zero is inserted.</li>
+                <li>
+                        Destination Port has a meaning within the context of a particular
+                        internet destination address.
+                </li>
+
+                <li>
+                        Length is the length in octets of this user datagram including this
+                        header and the data. (This means the minimum value of the length is
+                        eight.)
+                </li>
+
+                <li>
+                        Checksum is the 16-bit one's complement of the one's complement sum of a
+                        pseudo header of information from the IP header, the UDP header, and the
+                        data, padded with zero octets at the end (if necessary) to make a
+                        multiple of two octets.
+
+                        The pseudo header conceptually prefixed to the UDP header contains the
+                        source address, the destination address, the protocol, and the UDP
+                        length. This information gives protection against misrouted datagrams.
+                        This checksum procedure is the same as is used in TCP.
+                </li>
+        </ul>
+
+
+        <div class="container">
+                <div class="article column">
+
+                        input form here
+
+                </div>
+                <div class="layout column">
+                        layout of packets here
+                </div>
+        </div>
+</body>
+
+</html>
