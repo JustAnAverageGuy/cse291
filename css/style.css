@@ -1,7 +1,3 @@
-/* * {
-   border: solid 1px red;     
-} */
-
 body {
    font-family: 'Courier New', Courier, monospace;
 }
@@ -17,10 +13,41 @@ body {
    margin: 10px;
 }
 
-#header-format {
+.header-format {
    font-size: 20px;
 }
 
-/*  ul { */
-/*    list-style-type: '- '; */
-/* } */
+form{
+   display: grid;
+   grid-template-columns: auto 1fr;
+}
+form div  {
+   display: grid ;
+}
+
+#packet {
+   width: 150px;
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+}
+
+#packet div:hover {
+   border: 0.5px solid red;
+}
+
+#source-port:hover:before{
+   content: "(SourcePort)\A";
+}
+
+#dest-port:hover:before{
+   content: "(DestPort)\A";
+}
+#length:hover:before{
+   content: "(Length)\A";
+}
+#checksum:hover:before{
+   content: "(Checksum)\A";
+}
+#packdata {
+   grid-column: span 2;
+}

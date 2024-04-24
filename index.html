@@ -41,7 +41,7 @@
         </p>
 
 
-        <pre id="header-format" >
+        <pre class="header-format" >
                           0      7 8     15 16    23 24    31
                          +--------+--------+--------+--------+
                          |     Source      |   Destination   |
@@ -82,18 +82,56 @@
                         source address, the destination address, the protocol, and the UDP
                         length. This information gives protection against misrouted datagrams.
                         This checksum procedure is the same as is used in TCP.
+<pre class="header-format">                  0      7 8     15 16    23 24    31
+                 +--------+--------+--------+--------+
+                 |          source address           |
+                 +--------+--------+--------+--------+
+                 |        destination address        |
+                 +--------+--------+--------+--------+
+                 |  zero  |protocol|   UDP length    |
+                 +--------+--------+--------+--------+
+                                Psudo Header</pre>
+
                 </li>
         </ul>
 
 
         <div class="container">
                 <div class="article column">
-
-                        input form here
-
+    <form >
+        <div class="labels">
+            <label for="senderIP">Sender's IP:</label>
+            <label for="senderPort">Sender's Port Number:</label>
+            <label for="receiverIP">Receiver's IP:</label>
+            <label for="receiverPort">Receiver's Port Number:</label>
+            <label for="data">Data:</label>
+        </div>
+                                        
+        <div class="inputs">
+            <input type="text" id="senderIP" name="senderIP" value="123.234.456.123" required>
+            <input type="number" id="senderPort" name="senderPort" value="55678" required>
+            <input type="text" id="receiverIP" name="receiverIP" value="123.234.456.123" required>
+            <input type="number" id="receiverPort" name="receiverPort" value="44567" required>
+            <input type="text" id="data" name="data" value="Hi there" required>
+        </div>
+        <div>
+            <button onclick="showpackets()">Show Packets</button>
+        </div>
+    </form>
                 </div>
                 <div class="layout column">
-                        layout of packets here
+
+                                <div id="packet">
+                                        <div id="source-port">deadbeef</div>
+                                        <div id="dest-port">deadbeef </div>
+                                        <div id="length">deadbeef</div>
+                                        <div id="checksum">deadbeef</div>
+                                        <div id="packdata">
+                                                hmmdatekasdafsdjsdkjghe
+                                        </div>
+                                
+                                        
+                                </div>
                 </div>
         </div>
 </body>
