@@ -138,7 +138,7 @@ function startAnimation() {
 
     const boxCoords = [
         {
-            x: 100,
+            x: 50,
             y: 200,
             title: "UDP Datagram",
             subTitle: "",
@@ -146,7 +146,7 @@ function startAnimation() {
         },
 
         {
-            x: 350,
+            x: 300,
             y: 200,
             title: "UDP Header",
             subTitle: "",
@@ -159,64 +159,74 @@ function startAnimation() {
 
         },
         {
-            x: 600,
+            x: 550,
             y: 200,
             title: "Checksum",
             subTitle: "Packet used for checksum calculations",
             content: `${format_udp_pseudo_packet(uint8ArrayToHexString(pseudo_packet_array))}` 
 
         },
-/* 
+
         {
             x: 800,
             y: 200,
             title: "Receiver",
             subTitle: "Receiver Side",
             content: "",
-        } */
+        }
     ];
 
     boxCoords.forEach((coords, index) => {
-        setTimeout(() => {
-            const group = svg.append("g").attr("class", "animated-group");
+    setTimeout(() => {
+        const group = svg.append("g").attr("class", "animated-group");
 
-            const rect = group.append("rect")
-                .attr("x", coords.x)
-                .attr("y", coords.y)
-                .attr("width", 200)
-                .attr("height", 100)
-                .style("fill", "#f0f0f0")
-                .style("stroke", "#000")
-                .style("stroke-width", 2)
-                .on("mouseover", () => showDetail(coords.title, coords.subTitle, coords.content));
+        // Draw the box with transition
+        const rect = group.append("rect")
+            .attr("x", coords.x)
+            .attr("y", coords.y)
+            .attr("width", 200)
+            .attr("height", 100)
+            .style("fill", "#f0f0f0")
+            .style("stroke", "#000")
+            .style("stroke-width", 2)
+            .on("mouseover", () => showDetail(coords.title, coords.subTitle, coords.content))
+            .transition()
+            .duration(1000);
+          
+          
+        // Add text inside the box with transition
+        group.append("text")
+            .attr("x", coords.x + 100)
+            .attr("y", coords.y + 40)
+            .text(coords.title)
+            .attr("class", "header")
+            .style("opacity", 0)
+            .transition()
+            .delay(500)
+            .duration(500)
+            .style("opacity", 1);
 
-            group.append("text")
-                .attr("x", coords.x + 100)
-                .attr("y", coords.y + 40)
-                .text(coords.title)
-                .attr("class", "header");
+        // Draw arrow except for the last box
+        if (index < boxCoords.length - 1) {
+            const nextCoords = boxCoords[index + 1];
+            // Draw a curved arrow line with transition
+            const arrow = svg.append("path")
+                .attr("d", `M${coords.x + 200},${coords.y + 50} Q${coords.x + 300},${coords.y + 50} ${(nextCoords.x + coords.x + 300) / 2},${(coords.y + nextCoords.y + 100) / 2} T${nextCoords.x},${nextCoords.y + 50}`)
+                .attr("stroke", "black")
+                .attr("stroke-width", 2)
+                .attr("fill", "none")
+                .attr("marker-end", "url(#arrow)")
+                .style("opacity", 0)
+                .transition()
+                .delay(1000)
+                .duration(500)
+                .style("opacity", 1);
+        }
 
-            /* if (index < boxCoords.length - 1) {
-                const nextCoords = boxCoords[index + 1];
-                svg.append("line")
-                    .attr("x1", coords.x + 200)
-                    .attr("y1", coords.y + 50)
-                    .attr("x2", nextCoords.x)
-                    .attr("y2", nextCoords.y + 50)
-                    .attr("stroke", "black")
-                    .attr("stroke-width", 2);
-            } */
+     
+    }, index * 2000); // Delay each box by 2 seconds (adjust as needed)
+});
 
-            /* if (coords.title === "Sender" && index === 0) {
-                const dataPacket = group.append("rect")
-                    .attr("x", coords.x + 100)
-                    .attr("y", coords.y + 20)
-                    .attr("width", 20)
-                    .attr("height", 20)
-                    .attr("class", "data-packet");
-            } */
-        }, index * 1000); // Delay each box by 2 seconds (adjust as needed)
-    });
 }
 
 
