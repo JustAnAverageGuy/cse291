@@ -271,29 +271,5 @@ function checkAnswer(correctOption) {
         showPopUp("Incorrect Answer. Try again!", false);
     }
 }
-/* document.querySelectorAll(".header").forEach(element => {
-    element.addEventListener("mouseover", () => {
-        let title, subTitle, content;
-        if (element.parentElement.classList.contains("sender-group")) {
-            title = "Sender";
-            subTitle = "Sender Side";
-            content = "Data being sent";
-        } else if (element.parentElement.classList.contains("udp-header-group")) {
-            title = "UDP Header";
-            subTitle = "UDP Header";
-            const sourcePort = document.getElementById("source-port").value;
-            const destinationPort = document.getElementById("destination-port").value;
-            content = `Source Port: ${sourcePort}<br>Destination Port: ${destinationPort}<br>Checksum: ${Math.floor(Math.random() * 65535)}`;
-        } else if (element.parentElement.classList.contains("ip-header-group")) {
-            title = "IP Header";
-            subTitle = "IP Header";
-            content = `Version: 4<br>HLEN: 5<br>Type of service: Low Delay, High Throughput, Reliability<br>Total Length: 20 bytes<br>Identification: Unique Packet Id<br>Flags: Reserved bit (must be zero), do not fragment flag, more fragments flag<br>Fragment Offset: Number of Data Bytes ahead of the particular fragment<br>Time to live: Datagram’s lifetime<br>Protocol: Name of the protocol<br>Header Checksum: 16 bits header checksum<br>Source IP address: Sender's IP address<br>Destination IP address: Receiver's IP address<br>Option: Optional information such as source route, record route`;
-        }
-        showDetail(title, subTitle, content);
-    });
-    element.addEventListener("mouseleave", () => {
-        const detailBox = document.getElementById("detail-box");
-        detailBox.style.display = "none";
-    });
-}); */
+
 
