@@ -1,4 +1,22 @@
-/* Custom styles */
+span {
+   font-family: monospace;
+}
+
+.checksuminbox {
+   color: var(--red);
+}
+.datainbox {
+   color: var(--orange);
+}
+.lengthinbox {
+   color: var(--pink);
+}
+.destportinbox {
+   color: var(--green);
+}
+.sourceportinbox {
+   color: #00f;
+}
 #animation-container {
    height: 600px;
    border: 1px solid #ccc;
@@ -7,6 +25,8 @@
    overflow: hidden;
    background-color: #f8f9fa;
 }
+
+
 
 .header {
    fill: black;
